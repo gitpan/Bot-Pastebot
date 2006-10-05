@@ -1,0 +1,20 @@
+# $Id: /my/pastebot/MANIFEST 2312 2006-10-03T06:17:10.434949Z troc  $
+MANIFEST
+MANIFEST.SKIP
+Makefile.PL
+README
+TODO
+examples/pastebot.conf
+lib/Bot/Pastebot/Client/Irc.pm
+lib/Bot/Pastebot/Conf.pm
+lib/Bot/Pastebot/Data.pm
+lib/Bot/Pastebot/Server/Http.pm
+lib/Bot/Pastebot/WebUtil.pm
+pastebot
+static/highlights.css
+static/nopaste.gif
+static/paste-answer.html
+static/paste-form.html
+static/paste-lookup.html
+t/01_basic.t
+META.yml                                 Module meta-data (added by MakeMaker)
