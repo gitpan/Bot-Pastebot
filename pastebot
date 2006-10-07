@@ -1,12 +1,12 @@
 #!/usr/bin/perl
-# $Id: /my/pastebot/pastebot 2316 2006-10-04T16:18:38.227294Z troc  $
+# $Id: /my/pastebot/pastebot 2320 2006-10-07T16:06:46.644065Z troc  $
 
 use warnings;
 use strict;
 
 use lib qw(. ./lib);
 
-our $VERSION = '0.50';
+our $VERSION = '0.51';
 
 use File::Basename;
 use Perl::Tidy;

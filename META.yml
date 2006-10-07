@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                Bot-Pastebot
-version:             0.50
+version:             0.51
 abstract:            The original clipboard-to-chat gateway.
 license:             unknown
 generated_by:        ExtUtils::MakeMaker version 6.30_01
@@ -14,6 +14,7 @@ requires:
     POE:                           0.38
     POE::Component::IRC:           5.03
     Test::More:                    0.63
+    Text::Template:                1.44
 meta-spec:
     url: <http://module-build.sourceforge.net/META-spec-new.html>;
     version: 1.1

@@ -1,4 +1,13 @@
 =========================
+2006-10-07 16:19:22 v0_51
+=========================
+
+  2006-10-07 16:16:36 (r142) by rcaputo; pastebot M; Makefile.PL M
+
+    r2320@poerbook: troc | 2006-10-07 12:06:46 -0400 Add Text::Template
+    as a dependency. Bump the version for a new release. 
+
+=========================
 2006-10-05 18:09:31 v0_50
 =========================
 
