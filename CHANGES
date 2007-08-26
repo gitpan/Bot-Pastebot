@@ -1,15 +1,78 @@
-=========================
-2006-10-07 16:19:22 v0_51
-=========================
+=================================
+2007-08-26T19:08:07.526420Z v0_52
+=================================
+
+  2007-08-26 19:07:21 (r153) by rcaputo; pastebot M
+
+    Bump up the version.
+
+  2007-08-26 19:03:11 (r152) by martijn; lib/Bot/Pastebot/Client/Irc.pm M
+
+    Allow anon paste
+    
+    The spammers seem to be filling in the nick field every time, so we
+    can allow nick-less pastes. 
+
+  2007-08-26 19:03:01 (r151) by martijn; lib/Bot/Pastebot/Client/Irc.pm M
+
+    anti-spam measures
+    
+    Add a check whether the nick that people claim to be is actually in
+    the channel that is being announced to. 
+
+  2006-11-13 20:01:22 (r150) by buu; lib/Bot/Pastebot/Server/Http.pm M
+
+    Added another pravus patch:
+    
+    This patch changes the URL handling in the web portion of the
+    Pastebot. I've added a simple URL decoder to allow '#' characters in
+    the URL by using '%23'. The prefchan handling has also been changed
+    to take this into account so that 'channel' and '#channel' both
+    default the select box to '#channel', while '##channel' defaults to
+    '##channel', etc. 
+
+  2006-11-12 05:53:21 (r149) by buu
+  lib/Bot/Pastebot/Client/Irc.pm M; pastebot M; lib/Bot/Pastebot/Conf.pm
+  M
+
+    Committing Pravus' patch to fix channel names with # signs in them.
+    And such.
+
+  2006-11-03 23:11:17 (r148) by buu
+  static/paste-form.html M; lib/Bot/Pastebot/Conf.pm M;
+  lib/Bot/Pastebot/Server/Http.pm M
+
+    Modified ::Conf's comment support to only allow comments at the
+    beginning of lines.
+    
+    Changed static/paste-form and Server::Http to always generate
+    absolute URIs for action and image elements based on the current
+    iname. This allows the pastebot to work in situations where it's
+    being proxied and the URI being represented to the user is a
+    subfolder. 
+
+  2006-10-08 19:32:27 (r147) by martijn
+  lib/Bot/Pastebot/Server/Http.pm M
+
+    r1928@debian: martijn | 2006-10-08 21:32:53 +0200 underscore is
+    already part of \w 
+
+  2006-10-07 18:25:56 (r146) by rcaputo; static/paste-lookup.html M
+
+    Correct a typo that Martijn van Beers found in an inline style. 
+
+=================================
+2006-10-07T16:19:22.761667Z v0_51
+=================================
 
   2006-10-07 16:16:36 (r142) by rcaputo; pastebot M; Makefile.PL M
 
     r2320@poerbook: troc | 2006-10-07 12:06:46 -0400 Add Text::Template
     as a dependency. Bump the version for a new release. 
 
-=========================
-2006-10-05 18:09:31 v0_50
-=========================
+=================================
+2006-10-05T18:09:31.064144Z v0_50
+=================================
 
   2006-10-04 16:19:13 (r139) by rcaputo
   lib/Bot/Pastebot/Data.pm M; pastebot M; lib/Bot/Pastebot/Client/Irc.pm

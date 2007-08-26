@@ -8,7 +8,7 @@
     <table>
       <tr>
       <td>
-       <img src="/static/nopaste.gif" alt="POE Paste with lovely alien head...">
+       <img src="[% $iname %]static/nopaste.gif" alt="POE Paste with lovely alien head...">
         </td>
         <td align="left">
          <h1><font face="courier new">No paste!</font></h1>
@@ -22,7 +22,7 @@
        </td>
       </tr>
      </table>
-    <form method='post' action='paste' enctype='application/x-www-from-urlencoded' name="pasteForm">
+    <form method='post' action='[% $iname %]paste' enctype='application/x-www-from-urlencoded' name="pasteForm">
      <font face="courier new" size="-1"><br><br>
       1. channel: <select name='channel'>[% $channels %]</select>&nbsp; &nbsp;
       2. your nick: <input type='text' name='nick' size='25' maxlength='25'><br><br>
@@ -37,7 +37,7 @@
     <div>
      [% $footer %]
     </div>
-    <!-- $Id: /my/pastebot/static/paste-form.html 2272 2006-10-01T07:36:01.204828Z troc  $ -->
+    <!-- $Id: paste-form.html 148 2006-11-03 23:11:17Z buu $ -->
     <!-- Automatically put the clipboard contents into the paste field and select it. -->
     <script language="jscript" type="">
       onload=function () {

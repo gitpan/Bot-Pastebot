@@ -1,4 +1,4 @@
-# $Id: /my/pastebot/lib/Bot/Pastebot/Server/Http.pm 2316 2006-10-04T16:18:38.227294Z troc  $
+# $Id: Http.pm 150 2006-11-13 20:01:22Z buu $
 
 # The web server portion of our program.
 
@@ -147,6 +147,9 @@ sub httpd_session_got_query {
 
   # strip multiple // to prevent errors
   $url =~ s,//+,/,;
+
+  # simple url decode
+  $url =~ s,%([[:xdigit:]]{2}),chr hex $1,eg;
 
   ### Fetch the highlighted style sheet.
 
@@ -436,12 +439,12 @@ sub httpd_session_got_query {
 
   # 2003-12-22 - RC - Added _ and - as legal characters for channel
   # names.  What else?
-  if ($url =~ m,^/([\_\-\w]+)?,) {
+  if ($url =~ m,^/([\#\-\w]+)?,) {
 
     # set default channel from request URL, if possible
     my $prefchan = $1;
     if (defined $prefchan) {
-      $prefchan =~ s/^#*/#/;
+       $prefchan = "#$prefchan" unless $prefchan =~ m,^\#,;
     }
     else {
       $prefchan = '';
@@ -461,12 +464,15 @@ sub httpd_session_got_query {
     } sort @channels;
 
     # Build content.
-
+		
+		my $iname = $heap->{my_iname};
+			$iname .= '/' unless $iname =~ m#/$#;
     my $response = static_response(
       "$heap->{my_static}/paste-form.html",
       { bot_name => $heap->{my_name},
         channels => "@channels",
         footer   => PAGE_FOOTER,
+				iname    => $iname,
       }
     );
     $heap->{wheel}->put($response);

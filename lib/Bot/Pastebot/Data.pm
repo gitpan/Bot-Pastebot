@@ -1,4 +1,4 @@
-# $Id: /my/pastebot/lib/Bot/Pastebot/Data.pm 2316 2006-10-04T16:18:38.227294Z troc  $
+# $Id: Data.pm 139 2006-10-04 16:19:13Z rcaputo $
 
 # Data management.
 

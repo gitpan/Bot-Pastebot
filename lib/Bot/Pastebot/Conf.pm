@@ -1,4 +1,4 @@
-# $Id: /my/pastebot/lib/Bot/Pastebot/Conf.pm 2316 2006-10-04T16:18:38.227294Z troc  $
+# $Id: Conf.pm 149 2006-11-12 05:53:21Z buu $
 
 # Configuration reading and holding.
 
@@ -89,8 +89,10 @@ sub load {
 
   while (<MPH>) {
     chomp;
-    s/\s*\#.*$//;
+    s/\s*(?<!\\)\#.*$//; # remove comments ('#' not preceded by a '\')
     next if /^\s*$/;
+
+    s/\\\#/\#/g; # '\#' -> '#'
 
     # Section item.
     if (/^\s+(\S+)\s+(.*?)\s*$/) {

@@ -1,4 +1,4 @@
-# $Id: /my/pastebot/lib/Bot/Pastebot/WebUtil.pm 2309 2006-10-03T00:54:43.898269Z troc  $
+# $Id: WebUtil.pm 135 2006-10-03 00:54:57Z rcaputo $
 
 # Rocco's POE web server helper functions.  Do URL en/decoding.  Load
 # static pages, and do template things with them.

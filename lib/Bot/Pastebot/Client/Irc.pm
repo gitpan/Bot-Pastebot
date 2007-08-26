@@ -1,4 +1,4 @@
-# $Id: /my/pastebot/lib/Bot/Pastebot/Client/Irc.pm 2316 2006-10-04T16:18:38.227294Z troc  $
+# $Id: Irc.pm 152 2007-08-26 19:03:11Z martijn $
 
 # Rocco's IRC bot stuff.
 
@@ -7,7 +7,7 @@ package Bot::Pastebot::Client::Irc;
 use strict;
 
 use POE::Session;
-use POE::Component::IRC;
+use POE::Component::IRC::State;
 
 sub MSG_SPOKEN    () { 0x01 }
 sub MSG_WHISPERED () { 0x02 }
@@ -88,6 +88,7 @@ my %conf = (
     cver          => SCALAR | REQUIRED,
     ccinfo        => SCALAR | REQUIRED,
     localaddr     => SCALAR,
+    nickserv_pass => SCALAR,
   },
 );
 
@@ -110,7 +111,7 @@ sub initialize {
     my %conf = get_items_by_name($server);
 
     my $web_alias = $irc_to_web{$server};
-    my $irc = POE::Component::IRC->spawn();
+    my $irc = POE::Component::IRC::State->spawn();
 
     POE::Session->create(
       inline_states => {
@@ -365,7 +366,15 @@ sub initialize {
           $irc->yield( away => $conf{away} );
 
           foreach my $channel (@{$conf{channel}}) {
+            $channel =~ s/^#//;
             $kernel->yield( join => "\#$channel" );
+          }
+
+          if (defined $conf{nickserv_pass}) {
+             $irc->yield(
+                privmsg => 'NickServ',
+                "IDENTIFY $conf{nickserv_pass}"
+             );
           }
 
           $heap->{server_index} = 0;
@@ -374,7 +383,18 @@ sub initialize {
         announce => sub {
           my ($kernel, $heap, $channel, $message) =
             @_[KERNEL, HEAP, ARG0, ARG1];
-          $irc->yield( privmsg => $channel => $message );
+
+	  my ($nick, $addr) = $message =~ /^"?(.*?)"? at ([\d\.]+) /;
+
+	  if (my $data = $irc->nick_info ($nick)) {
+	    #TODO: maybe check $addr with $data->{Host} ?
+	    #      instead of the simple nick test below
+	  }
+
+	  if (   $nick eq "Someone"
+	      or $irc->is_channel_member( $channel, $nick)) {
+            $irc->yield( privmsg => $channel => $message );
+	  }
         },
 
         irc_ctcp_version => sub {
