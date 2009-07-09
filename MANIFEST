@@ -1,4 +1,4 @@
-# $Id: MANIFEST 137 2006-10-03 06:17:35Z rcaputo $
+# $Id: MANIFEST 155 2007-11-15 21:42:01Z rcaputo $
 MANIFEST
 MANIFEST.SKIP
 Makefile.PL
@@ -10,6 +10,7 @@ lib/Bot/Pastebot/Conf.pm
 lib/Bot/Pastebot/Data.pm
 lib/Bot/Pastebot/Server/Http.pm
 lib/Bot/Pastebot/WebUtil.pm
+lib/Bot/Pastebot/TextTemplate.pm
 pastebot
 static/highlights.css
 static/nopaste.gif

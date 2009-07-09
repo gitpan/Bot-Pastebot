@@ -1,4 +1,4 @@
-# $Id: Irc.pm 152 2007-08-26 19:03:11Z martijn $
+# $Id: Irc.pm 158 2009-07-09 20:41:59Z rcaputo $
 
 # Rocco's IRC bot stuff.
 
@@ -73,7 +73,6 @@ use Bot::Pastebot::Conf qw(SCALAR LIST REQUIRED);
 
 my %conf = (
   irc => {
-    _class        => __PACKAGE__,
     name          => SCALAR | REQUIRED,
     server        => LIST   | REQUIRED,
     nick          => LIST   | REQUIRED,
@@ -384,17 +383,17 @@ sub initialize {
           my ($kernel, $heap, $channel, $message) =
             @_[KERNEL, HEAP, ARG0, ARG1];
 
-	  my ($nick, $addr) = $message =~ /^"?(.*?)"? at ([\d\.]+) /;
+    my ($nick, $addr) = $message =~ /^"?(.*?)"? at ([\d\.]+) /;
 
-	  if (my $data = $irc->nick_info ($nick)) {
-	    #TODO: maybe check $addr with $data->{Host} ?
-	    #      instead of the simple nick test below
-	  }
+    if (my $data = $irc->nick_info ($nick)) {
+      #TODO: maybe check $addr with $data->{Host} ?
+      #      instead of the simple nick test below
+    }
 
-	  if (   $nick eq "Someone"
-	      or $irc->is_channel_member( $channel, $nick)) {
+    if (   $nick eq "Someone"
+        or $irc->is_channel_member( $channel, $nick)) {
             $irc->yield( privmsg => $channel => $message );
-	  }
+    }
         },
 
         irc_ctcp_version => sub {

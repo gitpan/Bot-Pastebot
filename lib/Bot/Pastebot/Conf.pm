@@ -1,4 +1,4 @@
-# $Id: Conf.pm 149 2006-11-12 05:53:21Z buu $
+# $Id: Conf.pm 158 2009-07-09 20:41:59Z rcaputo $
 
 # Configuration reading and holding.
 
@@ -22,28 +22,34 @@ my ($section, $section_line, %item, %config);
 sub flush_section {
   my ($conf_file, $conf_definition) = @_;
 
-  if (defined $section) {
+  return unless defined $section;
 
-    foreach my $item_name (sort keys %{$conf_definition->{$section}}) {
-      my $item_type = $conf_definition->{$section}->{$item_name};
-
-      if ($item_type & REQUIRED) {
-        die(
-          "conf error: section `$section' ",
-          "requires item `$item_name' ",
-          "at $conf_file line $section_line\n"
-        ) unless exists $item{$item_name};
-      }
-    }
-
+  unless (exists $item{name}) {
     die(
-      "conf error: section `$section' ",
-      "item `$item{name}' is redefined at $conf_file line $section_line\n"
-    ) if exists $config{$item{name}};
-
-    my $name = $item{name};
-    $config{$name} = { %item, type => $section };
+      "conf error: ",
+      "section `$section' has no `name' at $conf_file line $section_line"
+    );
   }
+
+  foreach my $item_name (sort keys %{$conf_definition->{$section}}) {
+    my $item_type = $conf_definition->{$section}->{$item_name};
+
+    if ($item_type & REQUIRED) {
+      die(
+        "conf error: section `$section' ",
+        "requires item `$item_name' ",
+        "at $conf_file line $section_line\n"
+      ) unless exists $item{$item_name};
+    }
+  }
+
+  die(
+    "conf error: section `$section' ",
+    "item `$item{name}' is redefined at $conf_file line $section_line\n"
+  ) if exists $config{$item{name}};
+
+  my $name = $item{name};
+  $config{$name} = { %item, type => $section };
 }
 
 # Parse some configuration.

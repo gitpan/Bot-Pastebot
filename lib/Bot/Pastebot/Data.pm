@@ -1,4 +1,4 @@
-# $Id: Data.pm 139 2006-10-04 16:19:13Z rcaputo $
+# $Id: Data.pm 158 2009-07-09 20:41:59Z rcaputo $
 
 # Data management.
 
@@ -41,7 +41,6 @@ use Bot::Pastebot::Conf qw(SCALAR REQUIRED);
 
 my %conf = (
   pastes => {
-    _class    => __PACKAGE__,
     name      => SCALAR | REQUIRED,
     check     => SCALAR,
     expire    => SCALAR,
