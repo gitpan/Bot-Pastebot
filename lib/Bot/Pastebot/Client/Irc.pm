@@ -1,5 +1,3 @@
-# $Id: Irc.pm 158 2009-07-09 20:41:59Z rcaputo $
-
 # Rocco's IRC bot stuff.
 
 package Bot::Pastebot::Client::Irc;
@@ -601,5 +599,4 @@ sub remove_colors {
   return $msg;
 }
 
-#------------------------------------------------------------------------------
 1;

@@ -1,5 +1,3 @@
-# $Id: Conf.pm 158 2009-07-09 20:41:59Z rcaputo $
-
 # Configuration reading and holding.
 
 package Bot::Pastebot::Conf;

@@ -1,5 +1,3 @@
-# $Id: Data.pm 158 2009-07-09 20:41:59Z rcaputo $
-
 # Data management.
 
 package Bot::Pastebot::Data;

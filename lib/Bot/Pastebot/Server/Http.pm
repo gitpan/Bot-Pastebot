@@ -1,5 +1,3 @@
-# $Id: Http.pm 158 2009-07-09 20:41:59Z rcaputo $
-
 # The web server portion of our program.
 
 package Bot::Pastebot::Server::Http;
@@ -704,5 +702,4 @@ sub fix_paste {
   return $paste;
 }
 
-#------------------------------------------------------------------------------
 1;

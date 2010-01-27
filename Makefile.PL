@@ -1,5 +1,3 @@
-# $Id$
-
 use warnings;
 use strict;
 
@@ -17,19 +15,25 @@ WriteMakefile(
     'File::ShareDir'      => 0.05,
     'HTTP::Request'       => 1.40,
     'HTTP::Response'      => 1.53,
-    'POE'                 => 0.38,
+    'POE'                 => 1.007,
     'POE::Component::IRC' => 5.03,
     'Perl::Tidy'          => 1.46,
     'Test::More'          => 0.63,
     'Text::Template'      => 1.44,
   },
+  LICENSE      => 'perl',
   EXE_FILES    => [ 'pastebot' ],
+  META_ADD     => {
+    resources  => {
+      license    => 'http://dev.perl.org/licenses/',
+      repository => 'http://github.com/~rcaputo/bot-pastebot',
+    },
+  },
   dist         => {
     COMPRESS   => 'gzip -9f',
     SUFFIX     => 'gz',
     PREOP      => (
-      'svn-log.perl --repo https://thirdlobe.com/svn/pastebot ' .
-      '| tee ./$(DISTNAME)-$(VERSION)/CHANGES > ./CHANGES'
+      'git-log.pl | tee ./$(DISTNAME)-$(VERSION)/CHANGES > ./CHANGES'
     ),
   },
   depend       => { pm_to_blib => 'setup_shared' },

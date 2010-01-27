@@ -1,7 +1,8 @@
-# $Id: WebUtil.pm 155 2007-11-15 21:42:01Z rcaputo $
-
 # Rocco's POE web server helper functions.  Do URL en/decoding.  Load
 # static pages, and do template things with them.
+#
+# TODO - We could probably replace them with an actual CPAN library or
+# two.
 
 package Bot::Pastebot::WebUtil;
 
@@ -229,5 +230,4 @@ sub is_true {
   return 0;
 }
 
-#------------------------------------------------------------------------------
 1;

@@ -1,39 +1,78 @@
-=================================
-2009-07-09T20:43:56.064656Z v0_53
-=================================
+================================
+2010-01-27 00:26:07 -0500 v0_540
+================================
 
-  2009-07-09 20:42:45 (r159) by rcaputo; pastebot M
+  commit 77f755c4be2f867f89453dfbaeb439141768670b
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Wed Jan 27 00:26:07 2010 -0500
+  
+    Bump the revision for release.
 
+  commit d51d5839921484474b290ab8a9db73fb2910f363
+  Author: Chris Nehren <apeiron@cpan.org>
+  Date:   Tue Jan 26 22:57:38 2010 -0500
+  
+    Add optional pidfile support, documentation and a test.
+
+  commit f405346194a6a0d32590393cab294573483235dc
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Tue Sep 22 21:21:46 2009 -0400
+  
+    Upgrade development from subversion to git.
+
+  commit 640ef6113a987542e8afa3fbe8d98969f3de463e
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Tue Jul 28 06:00:04 2009 +0000
+  
+    Use latest POE.
+
+  commit 9acf0d27efadbb7060be399c09eb0849800c9f61
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Mon Jul 27 04:50:08 2009 +0000
+  
+    Added a machine-readable repository directory to the distribution.
+    Documented the bug tracker, repository, and other resource URLs. 
+
+===============================
+2009-07-09 20:42:45 +0000 v0_53
+===============================
+
+  commit 80d9918bd07d4a84109d20b95f916b2abacfab55
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Thu Jul 9 20:42:45 2009 +0000
+  
     Time for a release.
 
-  2009-07-09 20:41:59 (r158) by rcaputo
-  lib/Bot/Pastebot/Data.pm M; lib/Bot/Pastebot/Client/Irc.pm M;
-  lib/Bot/Pastebot/Conf.pm M; lib/Bot/Pastebot/Server/Http.pm M
-
+  commit 49fff73a7ee0c5932785fbfdb6f19369dd857379
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Thu Jul 9 20:41:59 2009 +0000
+  
     Fix an error in the configuration file meta-configuration, reported
     by Matt Cashner.
-    
+
     Catch when sections aren't named, and provide clear warning about the
     problem rather than cryptic Perl undefined-value errors.
-    
+
     Add a "name" directive to the example database configuration.
-    
-    Fix tab damage in unrelated files. 
 
-  2009-01-02 00:55:40 (r157) by rcaputo
-  lib/Bot/Pastebot/TextTemplate.pm A
+    Fix tab damage in unrelated files.
 
+  commit 877f7b3cf790658b4d2d440b5ba34f0866b9a49a
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Fri Jan 2 00:55:40 2009 +0000
+  
     Add.
 
-  2008-09-26 15:28:41 (r156) by rcaputo
-  pastebot M; lib/Bot/Pastebot/Server/Http.pm M
-
+  commit 3275fd09ff060cde1f0dba46814825f029685580
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Fri Sep 26 15:28:41 2008 +0000
+  
     Documentation changes per IRC feedback from Kane.
 
-  2007-11-15 21:42:01 (r155) by rcaputo
-  lib/Bot/Pastebot/WebUtil.pm M; pastebot M; MANIFEST M;
-  lib/Bot/Pastebot/Server/Http.pm M
-
+  commit a49be44df1526b9f29a934bc1ac52409a235c16e
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Thu Nov 15 21:42:01 2007 +0000
+  
     Apply Michael Fowler's pluggable template engine patch. Resolves
     rt.cpan.org ticket 30352. 
 
