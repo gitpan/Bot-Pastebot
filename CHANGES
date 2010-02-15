@@ -1,4 +1,65 @@
 ================================
+2010-02-15 02:06:16 -0500 v0_541
+================================
+
+  commit ec7487f50fce9e6403b520997753f180996cb92f
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Mon Feb 15 02:06:16 2010 -0500
+  
+    Prepare for the next release.
+
+  commit 695354d18c76946c1f17e696291b758ee67d0e3a
+  Merge: 148d06e 47160ba
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Mon Feb 15 01:55:19 2010 -0500
+  
+    Merge commit 'refs/merge-requests/2' of
+    git://gitorious.org/bot-pastebot/bot-pastebot into integration
+
+  commit 148d06e21b946b2b5f9fd337706ccebca1ef31c1
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date:   Mon Feb 15 01:49:21 2010 -0500
+  
+    Use the proper git-log.pl script to generate changelogs.
+
+  commit 47160bab626ee6c4a142dd5eb60bf1ace9f2d1c4
+  Author: Chris Nehren <apeiron@cpan.org>
+  Date:   Sat Jan 30 13:23:34 2010 -0500
+  
+    Add a meta redirect to the paste landing page.
+
+  commit dc3a4b13abd1de57cce39bb798b699bdc46d687d
+  Author: Chris Nehren <apeiron@cpan.org>
+  Date:   Sat Jan 30 13:13:13 2010 -0500
+  
+    I suck. Fix the MANIFEST.
+
+  commit 7b24d19987da9ce88cdd9e0876a39b8f72f9e53c
+  Author: Chris Nehren <apeiron@cpan.org>
+  Date:   Tue Jan 26 23:45:23 2010 -0500
+  
+    And add a test.
+
+  commit abaa8d0b981b046e3b0744777c0e9c6e66f2589c
+  Author: Chris Nehren <apeiron@cpan.org>
+  Date:   Tue Jan 26 23:35:01 2010 -0500
+  
+    Add documentation and refactor the Administrivia section to be more
+    flexible.
+
+  commit 10acddb55013a2f3535e9199b39bb0e0323398d8
+  Author: Chris Nehren <apeiron@cpan.org>
+  Date:   Tue Jan 26 23:12:46 2010 -0500
+  
+    Make the pidfile optional.
+
+  commit 5bde656b4c16b1bc4084bed30a302047494e90c2
+  Author: Chris Nehren <apeiron@cpan.org>
+  Date:   Tue Jan 26 22:57:38 2010 -0500
+  
+    Add pidfile support. Needs to be frobbed to be optional. 
+
+================================
 2010-01-27 00:26:07 -0500 v0_540
 ================================
 

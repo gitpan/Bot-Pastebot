@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Bot-Pastebot
-version:            0.540
+version:            0.541
 abstract:           The original clipboard-to-chat gateway.
 author:
     - Rocco Caputo <rcaputo@cpan.org>
