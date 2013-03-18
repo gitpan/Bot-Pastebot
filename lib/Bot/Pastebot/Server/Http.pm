@@ -17,7 +17,7 @@ use File::ShareDir qw(dist_dir);
 use Bot::Pastebot::Conf qw( get_names_by_type get_items_by_name );
 use Bot::Pastebot::WebUtil qw(
   static_response parse_content parse_cookie dump_content html_encode
-  is_true cookie
+  is_true cookie redirect
 );
 use Bot::Pastebot::Data qw( channels store_paste fetch_paste is_ignored );
 
@@ -47,7 +47,7 @@ my %conf = (
     iface       => SCALAR,
     ifname      => SCALAR,
     port        => SCALAR | REQUIRED,
-    irc         => SCALAR | REQUIRED,
+    irc         => SCALAR,
     proxy       => SCALAR,
     iname       => SCALAR,
     static      => SCALAR,
@@ -324,18 +324,27 @@ sub httpd_session_got_query {
 
       $paste = fix_paste($paste, 0, 0, 0, 0);
 
-      my $response = static_response(
-        $heap->{my_template},
-        "$heap->{my_static}/paste-answer.html",
-        { paste_id   => $id,
-          error      => $error,
-          paste_link => $paste_link,
-          nick       => $nick,
-          summary    => $summary,
-          paste      => $paste,
-          footer     => PAGE_FOOTER,
-        }
-      );
+      my $response;
+
+      if( $error ) {
+        $response = static_response(
+          $heap->{my_template},
+          "$heap->{my_static}/paste-error.html",
+          {
+            error      => $error,
+            footer     => PAGE_FOOTER,
+          }
+        );
+      } else {
+        $response = redirect(
+          $heap->{my_template},
+          "$heap->{my_static}/paste-answer.html",
+          {
+            paste_id   => $id,
+            paste_link => $paste_link,
+          },
+        );
+      }
 
       if ($channel and $channel =~ /^\#/) {
         $kernel->post(
@@ -363,23 +372,21 @@ sub httpd_session_got_query {
     my ($nick, $summary, $paste) = fetch_paste($num);
 
     if (defined $paste) {
-
+      my @flag_names = qw(ln tidy hl wr);
       my $cookie = parse_cookie($request->headers->header('Cookie'));
       my $query  = parse_content($params);
 
       ### Make the paste pretty.
 
-      my $ln   = exists $query ->{ln}   ? is_true($query ->{ln})   :
-                 exists $cookie->{ln}   ? is_true($cookie->{ln})   : 0;
-      my $tidy = exists $query ->{tidy} ? is_true($query ->{tidy}) :
-                 exists $cookie->{tidy} ? is_true($cookie->{tidy}) : 0;
-      my $hl   = exists $query ->{hl}   ? is_true($query ->{hl})   :
-                 exists $cookie->{hl}   ? is_true($cookie->{hl})   : 0;
-      my $tx   = exists $query ->{tx}   ? is_true($query ->{tx})   :
-                 exists $cookie->{tx}   ? is_true($cookie->{tx})   : 0;
-      my $wr   = exists $query ->{wr}   ? is_true($query ->{wr})   :
-                 exists $cookie->{wr}   ? is_true($cookie->{wr})   : 0;
       my $store = is_true($query->{store});
+      my %flags;
+      for my $flag (@flag_names) {
+        $flags{$flag} = $store || exists $query->{$flag}
+                      ? is_true( $query->{$flag})
+                      : is_true($cookie->{$flag});
+      }
+
+      my $tx = is_true($query->{tx});
 
       my $variants = [
         ['html', 1.000, 'text/html',  undef, 'us-ascii', 'en', undef],
@@ -388,7 +395,7 @@ sub httpd_session_got_query {
       my $choice = choose($variants, $request);
       $tx = 1 if $choice && $choice eq 'text';
 
-      $paste = fix_paste($paste, $ln, $tidy, $hl, $wr) unless $tx;
+      $paste = fix_paste($paste, @flags{@flag_names}) unless $tx;
 
       # Spew the paste.
 
@@ -408,18 +415,14 @@ sub httpd_session_got_query {
             summary  => $summary,
             paste    => $paste,
             footer   => PAGE_FOOTER,
-            tidy     => ( $tidy ? "checked" : "" ),
-            hl       => ( $hl   ? "checked" : "" ),
-            ln       => ( $ln   ? "checked" : "" ),
-            tx       => ( $tx   ? "checked" : "" ),
-            wr       => ( $wr   ? "checked" : "" ),
+            tx       => ( $tx ? "checked" : "" ),
+            map { $_ => $flags{$_} ? "checked" : "" } @flag_names,
           }
         );
         if ($store) {
-          $response->push_header('Set-Cookie'=>cookie(tidy=>$tidy, $request));
-          $response->push_header('Set-Cookie' => cookie(hl => $hl, $request));
-          $response->push_header('Set-Cookie' => cookie(wr => $wr, $request));
-          $response->push_header('Set-Cookie' => cookie(ln => $ln, $request));
+          for my $flag (@flag_names) {
+            $response->push_header('Set-Cookie' => cookie($flag => $flags{$flag}, $request));
+          }
         }
       }
 
@@ -428,7 +431,7 @@ sub httpd_session_got_query {
     }
 
     my $response = HTTP::Response->new(404);
-    $response->push_header( 'Content-type', 'text/html' );
+    $response->push_header( 'Content-type', 'text/html; charset=utf-8' );
     $response->content(
       "<html>" .
       "<head><title>Paste Not Found</title></head>" .
@@ -443,7 +446,7 @@ sub httpd_session_got_query {
 
   # 2003-12-22 - RC - Added _ and - as legal characters for channel
   # names.  What else?
-  if ($url =~ m!^/([\#\-\w]+)?!) {
+  if ($url =~ m!^/([\#\-\w\.]+)?!) {
 
     # set default channel from request URL, if possible
     my $prefchan = $1;

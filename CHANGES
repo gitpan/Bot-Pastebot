@@ -1,141 +1,88 @@
 ================================
-2010-02-15 02:06:16 -0500 v0_541
+2013-03-18 11:52:53 -0400 v0_542
 ================================
 
-  commit ec7487f50fce9e6403b520997753f180996cb92f
+  commit 006784ba92a604d2ca127836c5f748224597955b
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Mon Feb 15 02:06:16 2010 -0500
+  Date:   Mon Mar 18 11:52:53 2013 -0400
   
-    Prepare for the next release.
+    Bump revision for release.
 
-  commit 695354d18c76946c1f17e696291b758ee67d0e3a
-  Merge: 148d06e 47160ba
+  commit a01d2ccc64311fcb1b92569b9c1fc5ebf10c734a
+  Author: fREW Schmidt <frioux@gmail.com>
+  Date:   Mon Mar 18 10:38:21 2013 -0500
+  
+    initial fix for RT68289
+
+  commit 779e6c6508b3fd1c923cd18270604b2d19b5fba5
+  Author: Jim Davis <jamdavis@franklinamerican.com>
+  Date:   Mon May 14 15:33:04 2012 -0500
+  
+    remove unnecessary exists() check, minor formatting
+
+  commit ff98bc6a4fcad0d3a72f7cfc8b3d62d3ea66625a
+  Author: Jim Davis <jamdavis@franklinamerican.com>
+  Date:   Mon May 14 15:30:48 2012 -0500
+  
+    This should fix the cookie-clearing problem
+
+  commit 71383cd4534fdd9f466d824f77e2a0596b8bb345
+  Author: Jim Davis <jamdavis@franklinamerican.com>
+  Date:   Mon May 14 15:27:20 2012 -0500
+  
+    consolidate ln/tidy/hl/wr into a hash
+
+  commit eecb06bc266ca477e3ffc569da9278871933778e
+  Author: Jim Davis <jamdavis@franklinamerican.com>
+  Date:   Mon May 14 15:12:44 2012 -0500
+  
+    $tx is never stored in the cookie
+
+  commit 407a85e31051748baf15bb6a31142f126fa689bd
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Mon Feb 15 01:55:19 2010 -0500
+  Date:   Mon Feb 13 10:13:14 2012 -0500
   
-    Merge commit 'refs/merge-requests/2' of
-    git://gitorious.org/bot-pastebot/bot-pastebot into integration
+    Allow a pastebot that's only a web pastebin. No IRC necessary.
 
-  commit 148d06e21b946b2b5f9fd337706ccebca1ef31c1
+    Documented as possible, but the configuration validation prevents it
+    from occurring. Reported by mira|AO on FreeNode #poe.
+
+  commit 9bf939b819dc3701e4c83e9197e6e7fa21474759
+  Merge: 3defdf3 6306ece
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Mon Feb 15 01:49:21 2010 -0500
+  Date:   Tue Apr 26 10:32:14 2011 -0700
   
-    Use the proper git-log.pl script to generate changelogs.
+    Merged pull request #2 from lwsitu/master.
 
-  commit 47160bab626ee6c4a142dd5eb60bf1ace9f2d1c4
-  Author: Chris Nehren <apeiron@cpan.org>
-  Date:   Sat Jan 30 13:23:34 2010 -0500
+    redirect after a paste with a HTTP redirect instead of a meta
+    redirect
+
+  commit 6306ececd23dafc92119bc8303920f8a97113b68
+  Author: Lian Wan Situ <lwsitu@cpan.org>
+  Date:   Wed Apr 13 13:34:16 2011 -0400
   
-    Add a meta redirect to the paste landing page.
+    redirect to the paste result page after a successful paste
 
-  commit dc3a4b13abd1de57cce39bb798b699bdc46d687d
-  Author: Chris Nehren <apeiron@cpan.org>
-  Date:   Sat Jan 30 13:13:13 2010 -0500
+  commit 3defdf31f335d70ea8956470d96ad212b3429126
+  Author: Dagfinn Ilmari Mannsåker <ilmari@ilmari.org>
+  Date:   Tue Sep 14 19:08:23 2010 +0100
   
-    I suck. Fix the MANIFEST.
+    Allow '.' in channel names
 
-  commit 7b24d19987da9ce88cdd9e0876a39b8f72f9e53c
-  Author: Chris Nehren <apeiron@cpan.org>
-  Date:   Tue Jan 26 23:45:23 2010 -0500
-  
-    And add a test.
-
-  commit abaa8d0b981b046e3b0744777c0e9c6e66f2589c
-  Author: Chris Nehren <apeiron@cpan.org>
-  Date:   Tue Jan 26 23:35:01 2010 -0500
-  
-    Add documentation and refactor the Administrivia section to be more
-    flexible.
-
-  commit 10acddb55013a2f3535e9199b39bb0e0323398d8
-  Author: Chris Nehren <apeiron@cpan.org>
-  Date:   Tue Jan 26 23:12:46 2010 -0500
-  
-    Make the pidfile optional.
-
-  commit 5bde656b4c16b1bc4084bed30a302047494e90c2
-  Author: Chris Nehren <apeiron@cpan.org>
-  Date:   Tue Jan 26 22:57:38 2010 -0500
-  
-    Add pidfile support. Needs to be frobbed to be optional. 
-
-================================
-2010-01-27 00:26:07 -0500 v0_540
-================================
-
-  commit 77f755c4be2f867f89453dfbaeb439141768670b
+  commit 55017432da9084650fc864e71f6e41e66dc1b30e
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Wed Jan 27 00:26:07 2010 -0500
+  Date:   Tue May 25 01:54:30 2010 -0400
   
-    Bump the revision for release.
+    Add channels() to the imports for Bot::Pastebot::Data.
 
-  commit d51d5839921484474b290ab8a9db73fb2910f363
-  Author: Chris Nehren <apeiron@cpan.org>
-  Date:   Tue Jan 26 22:57:38 2010 -0500
+    Reported by apeiron on Freenode #perl.
+
+  commit d80bb7d446b3fe6a7592c21b6c6b0e10ebf736de
+  Author: Lian Wan Situ <lwsitu@cpan.org>
+  Date:   Sat Mar 20 15:51:45 2010 -0400
   
-    Add optional pidfile support, documentation and a test.
-
-  commit f405346194a6a0d32590393cab294573483235dc
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Tue Sep 22 21:21:46 2009 -0400
-  
-    Upgrade development from subversion to git.
-
-  commit 640ef6113a987542e8afa3fbe8d98969f3de463e
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Tue Jul 28 06:00:04 2009 +0000
-  
-    Use latest POE.
-
-  commit 9acf0d27efadbb7060be399c09eb0849800c9f61
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Mon Jul 27 04:50:08 2009 +0000
-  
-    Added a machine-readable repository directory to the distribution.
-    Documented the bug tracker, repository, and other resource URLs. 
-
-===============================
-2009-07-09 20:42:45 +0000 v0_53
-===============================
-
-  commit 80d9918bd07d4a84109d20b95f916b2abacfab55
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Thu Jul 9 20:42:45 2009 +0000
-  
-    Time for a release.
-
-  commit 49fff73a7ee0c5932785fbfdb6f19369dd857379
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Thu Jul 9 20:41:59 2009 +0000
-  
-    Fix an error in the configuration file meta-configuration, reported
-    by Matt Cashner.
-
-    Catch when sections aren't named, and provide clear warning about the
-    problem rather than cryptic Perl undefined-value errors.
-
-    Add a "name" directive to the example database configuration.
-
-    Fix tab damage in unrelated files.
-
-  commit 877f7b3cf790658b4d2d440b5ba34f0866b9a49a
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Fri Jan 2 00:55:40 2009 +0000
-  
-    Add.
-
-  commit 3275fd09ff060cde1f0dba46814825f029685580
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Fri Sep 26 15:28:41 2008 +0000
-  
-    Documentation changes per IRC feedback from Kane.
-
-  commit a49be44df1526b9f29a934bc1ac52409a235c16e
-  Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Thu Nov 15 21:42:01 2007 +0000
-  
-    Apply Michael Fowler's pluggable template engine patch. Resolves
-    rt.cpan.org ticket 30352. 
+    Silence warnings when a pidfile is not set. Don't try to write a
+    pidfile if it has not been enabled in the settings. 
 
 ==============
 End of Excerpt

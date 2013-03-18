@@ -19,4 +19,5 @@ static/paste-answer.html
 static/paste-form.html
 static/paste-lookup.html
 t/01_basic.t
-META.yml                                 Module meta-data (added by MakeMaker)
+META.yml                                 Module YAML meta-data (added by MakeMaker)
+META.json                                Module JSON meta-data (added by MakeMaker)
