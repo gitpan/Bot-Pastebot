@@ -19,6 +19,7 @@ no_index:
     - inc
 requires:
   File::ShareDir: 0.05
+  HTTP::Negotiate: 6
   HTTP::Request: 1.4
   HTTP::Response: 1.53
   POE: 1.007
@@ -29,4 +30,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: http://github.com/~rcaputo/bot-pastebot
-version: 0.542
+version: 0.543
