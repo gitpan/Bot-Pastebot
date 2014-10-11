@@ -1,5 +1,5 @@
 package Bot::Pastebot;
-
+$Bot::Pastebot::VERSION = '0.600';
 use warnings;
 use strict;
 
@@ -11,17 +11,21 @@ __END__
 
 Bot::Pastebot - the original clipboard to chat gateway
 
+=head1 VERSION
+
+version 0.600
+
 =head1 SYNOPSIS
 
 pastebot -f configfile
 
 =head1 DESCRIPTION
 
-The L<pastebot> command-line program contains full documentation,
-including the syntax and options for pastebot's configuration files.
+See L<pastebot> for the full documentation, including syntax and
+options for pastebot's configuration files.
 
 Pastebot's documentation may be read by running C<perldoc pastebot>.
 
-The Bot::Pastebot module is a placeholder for later refactoring.
+This Bot::Pastebot module is a placeholder for CPAN.
 
 =cut

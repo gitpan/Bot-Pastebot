@@ -1,7 +1,7 @@
 # Configuration reading and holding.
 
 package Bot::Pastebot::Conf;
-
+$Bot::Pastebot::Conf::VERSION = '0.600';
 use strict;
 use Carp qw(croak);
 
@@ -178,3 +178,28 @@ sub get_items_by_name {
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+Bot::Pastebot::Conf - Accessors for pastebot configuration files.
+
+=head1 VERSION
+
+version 0.600
+
+=head1 DESCRIPTION
+
+See L<pastebot> for the full documentation, including syntax and
+options for pastebot's configuration files.
+
+This module implements the reader and accessors for Bot::Pastebot's
+configuration files.
+
+=head1 BUGS
+
+Some form of this code probably exists in other CPAN modules.
+The rest should probably be distributed separately.
+
+=cut

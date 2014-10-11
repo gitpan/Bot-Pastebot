@@ -1,7 +1,7 @@
 # Data management.
 
 package Bot::Pastebot::Data;
-
+$Bot::Pastebot::Data::VERSION = '0.600';
 use warnings;
 use strict;
 
@@ -320,3 +320,23 @@ sub initialize {
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+Bot::Pastebot::Data - Manage pastebot's database.
+
+=head1 VERSION
+
+version 0.600
+
+=head1 DESCRIPTION
+
+See L<pastebot> for the full documentation, including syntax and
+options for pastebot's configuration files.
+
+This module contains internal functions to save, recall, and otherwise
+manage Bot::Pastebot data.
+
+=cut

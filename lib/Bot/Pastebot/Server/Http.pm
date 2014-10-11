@@ -1,7 +1,7 @@
 # The web server portion of our program.
 
 package Bot::Pastebot::Server::Http;
-
+$Bot::Pastebot::Server::Http::VERSION = '0.600';
 use warnings;
 use strict;
 
@@ -263,6 +263,7 @@ sub httpd_session_got_query {
       $nick =~ s/\s+/ /g;
       $nick =~ s/^\s+//;
       $nick =~ s/\s+$//;
+      $nick = substr($nick, 0, 30);
       $nick = html_encode($nick);
 
       if (length $nick) {
@@ -706,3 +707,22 @@ sub fix_paste {
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+Bot::Pastebot::Server::Http - The part that serves the pastes.
+
+=head1 VERSION
+
+version 0.600
+
+=head1 DESCRIPTION
+
+See L<pastebot> for the full documentation, including syntax and
+options for pastebot's configuration files.
+
+This module implements Bot::Pastebot's web pastebin.
+
+=cut

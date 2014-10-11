@@ -277,6 +277,8 @@ A sample:
     server        irc.freenode.net 6667
     server        irc.freenode.net 7000
     uname         pastebot
+    server_pass   s3krit
+    use_ssl       0
     nickserv_pass password
 
 =over 2
@@ -350,7 +352,7 @@ Required.  Specifies the bot's nickname on the IRC network.  A bot may
 have multiple nicknames, each specified as a separate configuration
 line.  It will attempt to use them in order, skipping to the next in
 the list as it determines each is already taken.  If every nickname is
-taken, it will append numeric digets to the names and try again.
+taken, it will append numeric digits to the names and try again.
 
 The pastebot will periodically try to reclaim one of the original
 nicknames in its configuration.
@@ -370,6 +372,15 @@ can connect to one of several servers, each specified on a different
 
 IRC requires clients to send a short "user name" when establishing a
 connection.  This parameter specifies that name.
+
+=item use_ssl BOOLEAN
+
+Optional.  Set this flag to a true value to connect over SSL.
+
+=item server_pass PASSWORD
+
+Optional.  Some IRC servers require a private password to connect.  This
+parameter specifies that password.
 
 =item nickserv_pass PASSWORD
 
@@ -437,6 +448,88 @@ directories will not be created, however.
 
 =back
 
+=head1 REVERSE PROXYING
+
+Pastebot is its own web server.  It often cannot bind to port 80
+because some other web server is already there.  The recommended port
+8888 may be hostile towards people behind firewalls.
+
+Apache users can use ProxyPass to map a directory on their port-80
+servers to a running pastebot. This feature requires Apache be built
+with both mod_proxy and mod_proxy_add_forward.c support, and that the
+add forward module come before the proxy module.  For example:
+
+  ./configure --enable-module=proxy \
+    --activate-module=src/modules/extra/mod_proxy_add_forward.c \
+    --enable-module=proxy_add_forward \
+    --permute-module=proxy:END \
+    ...
+
+Once Apache is built, you can create a virtual location for the proxy
+directory.
+
+  <Location /pastebot>
+    Order allow,deny
+    Allow from all
+    Deny from none
+  </Location>
+
+Then you must tell Apache to forward any requests in the /pastebot/
+directory through to the local Pastebot server.
+
+  ProxyPass  /pastebot/  http://127.0.0.1:8888/
+
+Now people can use your pastebot on port 80.  Be sure to set your
+pastebot's "iname" to match your proxy's address and path.  For
+example:
+
+  web_server
+    ...
+    proxy 127.0.0.1
+    iname http://example.org/pastebot/
+
+=head1 TROUBLESHOOTING
+
+Common problems and solutions.
+
+=head2 Can't locate [some module] in @INC (@INC contains: ...)
+
+Somehow Bot::Pastebot was installed without one or more prerequisites.
+Install the module that can't be located, and try again.
+
+This error may show up multiple times until each required module is
+installed.  Use a package manager, like the CPAN shell, to automate
+the process.
+
+=head2 IRC client (NAME): socket error occurred: Can't assign requested address
+
+The most likely cause is an unknown host name, either for a local
+machine or a remote IRC server.  If a pastebot has multiple servers
+specified, it will rotate to the next available server in about a
+minute.
+
+=head2 <something> section <name> is redefined at ##
+
+The error is caused when two or more sections in the pastebot
+configuration share the same name.  To fix it, configure pastebot to
+use different names for each section.
+
+In practice, the error is very noisy.  Fortunately you only need the
+first line.  The following example says which section (pbtest) is
+redefined, and where (line 68):
+
+  pastes section pbtest is redefined at 68
+  Compilation failed in require at Server/Web.pm line 18, <MPH> line 85.
+  BEGIN failed--compilation aborted at Server/Web.pm line 18, <MPH> line 85.
+  Compilation failed in require at ./pastebot.perl line 9, <MPH> line 85.
+  BEGIN failed--compilation aborted at ./pastebot.perl line 9, <MPH> line 85.
+
+Renaming one of the pbtest sections will resolve the conflict.
+
+=head2 Pastebot is not sending any pastes to IRC
+
+In the web form, you must use a real IRC nick of someone who is on that channel.
+
 =head1 BUG TRACKER
 
 https://rt.cpan.org/Dist/Display.html?Queue=Bot-Pastebot
@@ -453,7 +546,7 @@ irc://irc.perl.org/poe
 
 =head1 AUTHORS & COPYRIGHT
 
-Pastebot is Copyright (C) 2002-2010 by Rocco Caputo.  All rights are
+Pastebot is Copyright (C) 2002-2013 by Rocco Caputo.  All rights are
 reserved.  Pastebot is free software; you may redistribute and/or
 modify it under the same terms as Perl itself.
 

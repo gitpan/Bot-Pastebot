@@ -1,5 +1,5 @@
 package Bot::Pastebot::TextTemplate;
-
+$Bot::Pastebot::TextTemplate::VERSION = '0.600';
 use Text::Template;
 use warnings;
 use strict;
@@ -55,6 +55,10 @@ __END__
 =head1 NAME
 
 Bot::Pastebot::TextTemplate - Text::Template glue code
+
+=head1 VERSION
+
+version 0.600
 
 =head1 DESCRIPTION
 

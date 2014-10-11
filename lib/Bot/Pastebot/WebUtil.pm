@@ -5,7 +5,7 @@
 # two.
 
 package Bot::Pastebot::WebUtil;
-
+$Bot::Pastebot::WebUtil::VERSION = '0.600';
 use warnings;
 use strict;
 
@@ -133,7 +133,7 @@ sub parse_cookie {
 sub _render_template {
   my ($template, $filename, $record) = @_;
 
-  my ($content, $error);
+  my ($content, $error) = ('', 0);
   if (open(my $template_fh, "<", $filename)) {
 
     $content = eval { $template->process($template_fh, $record) };
@@ -156,7 +156,7 @@ sub _render_template {
 
   return +{
     content => $content,
-    error => 1,
+    error => $error,
   };
 }
 
@@ -259,3 +259,28 @@ sub is_true {
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+Bot::Pastebot::WebUtil - Web server helper functions.
+
+=head1 VERSION
+
+version 0.600
+
+=head1 DESCRIPTION
+
+See L<pastebot> for the full documentation, including syntax and
+options for pastebot's configuration files.
+
+This module contains internal functions used by Bot::Pastebot to
+handle web content.
+
+=head1 BUGS
+
+Some form of this code probably exists in other CPAN modules.
+The rest should probably be distributed separately.
+
+=cut

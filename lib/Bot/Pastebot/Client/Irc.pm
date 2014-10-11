@@ -1,7 +1,8 @@
 # Rocco's IRC bot stuff.
+# vim: expandtab
 
 package Bot::Pastebot::Client::Irc;
-
+$Bot::Pastebot::Client::Irc::VERSION = '0.600';
 use strict;
 
 use POE::Session;
@@ -75,6 +76,7 @@ my %conf = (
     server        => LIST   | REQUIRED,
     nick          => LIST   | REQUIRED,
     uname         => SCALAR | REQUIRED,
+    server_pass   => SCALAR,
     iname         => SCALAR | REQUIRED,
     away          => SCALAR | REQUIRED,
     flags         => SCALAR,
@@ -82,9 +84,10 @@ my %conf = (
     channel       => LIST   | REQUIRED,
     quit          => SCALAR | REQUIRED,
     cuinfo        => SCALAR | REQUIRED,
-    cver          => SCALAR | REQUIRED,
+    cver          => SCALAR,
     ccinfo        => SCALAR | REQUIRED,
     localaddr     => SCALAR,
+    use_ssl       => SCALAR,
     nickserv_pass => SCALAR,
   },
 );
@@ -106,6 +109,14 @@ sub initialize {
 
   foreach my $server (get_names_by_type('irc')) {
     my %conf = get_items_by_name($server);
+
+    my $version_string = $conf{cver};
+    unless (defined $version_string and length $version_string) {
+      $version_string = (
+        "Bot::Pastebot $main::VERSION " .
+        "<https://github.com/rcaputo/bot-pastebot>"
+      );
+    }
 
     my $web_alias = $irc_to_web{$server};
     my $irc = POE::Component::IRC::State->spawn();
@@ -155,6 +166,8 @@ sub initialize {
               Server    => $chosen_server,
               Port      => $chosen_port,
               Username  => $conf{uname},
+              Password  => $conf{server_pass},
+              UseSSL    => $conf{use_ssl},
               Ircname   => $conf{iname},
               LocalAddr => $conf{localaddr},
             }
@@ -398,7 +411,7 @@ sub initialize {
           my ($kernel, $sender) = @_[KERNEL, ARG0];
           my $who = (split /!/, $sender)[0];
           print "ctcp version from $who\n";
-          $irc->yield( ctcpreply => $who, "VERSION $conf{cver}" );
+          $irc->yield( ctcpreply => $who, "VERSION $version_string" );
         },
 
         irc_ctcp_clientinfo => sub {
@@ -600,3 +613,23 @@ sub remove_colors {
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+Bot::Pastebot::Client::Irc - The part that sits on IRC channels.
+
+=head1 VERSION
+
+version 0.600
+
+=head1 DESCRIPTION
+
+See L<pastebot> for the full documentation, including syntax and
+options for pastebot's configuration files.
+
+This module implements Bot::Pastebot's IRC-based user interface
+presence.
+
+=cut

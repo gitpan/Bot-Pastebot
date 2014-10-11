@@ -1,99 +1,113 @@
-================================
-2013-03-22 08:16:34 -0400 v0_543
-================================
+==================================================
+Changes from 2013-10-11 00:00:00 +0000 to present.
+==================================================
 
-  commit 46420fae6fd4e2695441161e96fffe267f52deee
+------------------------------------------
+version 0.600 at 2014-10-11 01:51:10 +0000
+------------------------------------------
+
+  Change: 12b0b0641d43d343ed9331cb78e1e93af27b75d3
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Fri Mar 22 08:16:34 2013 -0400
-  
-    Fix a missing HTTP::Negotiate dependency. 
+  Date : 2014-10-10 21:50:33 +0000
 
-================================
-2013-03-18 11:52:53 -0400 v0_542
-================================
+    Add a .gitignore to skip counting release artifacts as dirty files. 
 
-  commit 006784ba92a604d2ca127836c5f748224597955b
+  Change: 1f37b71bc9cdd9e15213125415eb2ed7967daf8b
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Mon Mar 18 11:52:53 2013 -0400
-  
-    Bump revision for release.
+  Date : 2014-10-10 21:47:09 +0000
 
-  commit a01d2ccc64311fcb1b92569b9c1fc5ebf10c734a
-  Author: fREW Schmidt <frioux@gmail.com>
-  Date:   Mon Mar 18 10:38:21 2013 -0500
-  
-    initial fix for RT68289
+    Merge pull request #6 from willsheppard/master
 
-  commit 779e6c6508b3fd1c923cd18270604b2d19b5fba5
-  Author: Jim Davis <jamdavis@franklinamerican.com>
-  Date:   Mon May 14 15:33:04 2012 -0500
-  
-    remove unnecessary exists() check, minor formatting
+    Add troubleshooting point 
 
-  commit ff98bc6a4fcad0d3a72f7cfc8b3d62d3ea66625a
-  Author: Jim Davis <jamdavis@franklinamerican.com>
-  Date:   Mon May 14 15:30:48 2012 -0500
-  
-    This should fix the cookie-clearing problem
-
-  commit 71383cd4534fdd9f466d824f77e2a0596b8bb345
-  Author: Jim Davis <jamdavis@franklinamerican.com>
-  Date:   Mon May 14 15:27:20 2012 -0500
-  
-    consolidate ln/tidy/hl/wr into a hash
-
-  commit eecb06bc266ca477e3ffc569da9278871933778e
-  Author: Jim Davis <jamdavis@franklinamerican.com>
-  Date:   Mon May 14 15:12:44 2012 -0500
-  
-    $tx is never stored in the cookie
-
-  commit 407a85e31051748baf15bb6a31142f126fa689bd
+  Change: 4562c6c28d7497fa85a9f76c59001ccd445780ee
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Mon Feb 13 10:13:14 2012 -0500
-  
-    Allow a pastebot that's only a web pastebin. No IRC necessary.
+  Date : 2014-10-10 21:46:14 +0000
 
-    Documented as possible, but the configuration validation prevents it
-    from occurring. Reported by mira|AO on FreeNode #poe.
+    Merge pull request #5 from willsheppard/patch-1
 
-  commit 9bf939b819dc3701e4c83e9197e6e7fa21474759
-  Merge: 3defdf3 6306ece
+    Fix typo: digets -> digits 
+
+  Change: ff6cd75d30b76c0245029734da26d209ae218189
+  Author: Will Sheppard <github@siteaboutnothing.com>
+  Date : 2014-09-04 11:24:58 +0000
+
+    Add troubleshooting point
+
+    "Pastebot is not sending any pastes to IRC" 
+
+  Change: 4d68bba16151cf5924dc56b59ecf6535a1b7b617
+  Author: Will Sheppard <github@siteaboutnothing.com>
+  Date : 2014-09-04 10:19:40 +0000
+
+    Fix typo: digets -> digits 
+
+  Change: 7508ee9878574757b84cb466ec9d5b37ad801606
+  Author: Zoffix <cpan@zoffix.com>
+  Date : 2013-07-13 14:43:32 +0000
+
+    [rt.cpan.org 41615] Don't rely on maxlength to prevent nickname
+    overflow. 
+
+  Change: bd83d0053c0ac3026445f5b7e831698398ffe3ce
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Tue Apr 26 10:32:14 2011 -0700
-  
-    Merged pull request #2 from lwsitu/master.
+  Date : 2013-07-13 14:35:13 +0000
 
-    redirect after a paste with a HTTP redirect instead of a meta
-    redirect
+    Merge branch 'master' of github.com:rcaputo/bot-pastebot into gh 
 
-  commit 6306ececd23dafc92119bc8303920f8a97113b68
-  Author: Lian Wan Situ <lwsitu@cpan.org>
-  Date:   Wed Apr 13 13:34:16 2011 -0400
-  
-    redirect to the paste result page after a successful paste
-
-  commit 3defdf31f335d70ea8956470d96ad212b3429126
-  Author: Dagfinn Ilmari Mannsåker <ilmari@ilmari.org>
-  Date:   Tue Sep 14 19:08:23 2010 +0100
-  
-    Allow '.' in channel names
-
-  commit 55017432da9084650fc864e71f6e41e66dc1b30e
+  Change: f7bfcf75c2d1fc664eb92224260e8d83b4f3b5a3
   Author: Rocco Caputo <rcaputo@cpan.org>
-  Date:   Tue May 25 01:54:30 2010 -0400
-  
-    Add channels() to the imports for Bot::Pastebot::Data.
+  Date : 2013-07-13 14:19:55 +0000
 
-    Reported by apeiron on Freenode #perl.
+    Superficially document internal modules for Dist::Zilla's sake. 
 
-  commit d80bb7d446b3fe6a7592c21b6c6b0e10ebf736de
-  Author: Lian Wan Situ <lwsitu@cpan.org>
-  Date:   Sat Mar 20 15:51:45 2010 -0400
-  
-    Silence warnings when a pidfile is not set. Don't try to write a
-    pidfile if it has not been enabled in the settings. 
+  Change: 6f05b1d3890abdb2267035fc264f8f8d8675f65d
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2013-07-13 14:06:31 +0000
 
-==============
-End of Excerpt
-==============
+    Initial conversion to Dist::Zilla. 
+
+  Change: 72af32a73aa826b1440474f562e96589bb51efe6
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2013-07-13 13:55:06 +0000
+
+    Add an example configuration for web pastebin-only use. 
+
+  Change: 6472f72bbbca96ecd1d31aaafdbe908371b8f02e
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2013-07-13 13:05:38 +0000
+
+    [rt.cpan.org 85315] Make cver optional.
+
+    Per Axel Beckert's recommendation, the IRC version string is made
+    optinoal and will default to the module's current version info. cver
+    can still be overridden in the .conf file, and all existing
+    installations will continue to work the way they always have. 
+
+  Change: cfdfcc47d3844912edd5f008353b9da5a208c129
+  Author: Don Seller <possum@cpan.org>
+  Date : 2013-07-13 12:30:57 +0000
+
+    [rt.cpan.org 41437] Add options for server passwords and SSL.
+
+    Applly Don Seller's patch from the RT ticket. 
+
+  Change: 9d733cc04f30c6094b9c9f864052cb038295f814
+  Author: Rocco Caputo <rcaputo@cpan.org>
+  Date : 2013-07-04 22:51:50 +0000
+
+    Merge pull request #4 from elmar/master
+
+    pastebot web page should return status 200 (instead of 500) on
+    success 
+
+  Change: d4a4147792780f68664606692ecbf8010fce0e65
+  Author: Elmar S. Heeb <elmar@heebs.ch>
+  Date : 2013-05-15 12:23:46 +0000
+
+    return the actual error value instead of the constant 1 from
+    _render_template 
+
+================================================
+Plus 8 releases after 2013-10-11 00:00:00 +0000.
+================================================
